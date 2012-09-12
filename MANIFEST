@@ -1,0 +1,7 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Data-DEC.t
+lib/Data/DEC.pm
+META.yml                                 Module meta-data (added by MakeMaker)
