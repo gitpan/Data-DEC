@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Data-DEC
-version:            0.01
+version:            0.02
 abstract:           Perl extension for parsing and validation of DEC and DECS formatted data
 author:
     - Tom Kirchner <tk@activestate.com>
@@ -10,7 +10,9 @@ configure_requires:
     ExtUtils::MakeMaker:  0
 build_requires:
     ExtUtils::MakeMaker:  0
-requires:  {}
+requires:
+    Data::Dumper:     0
+    Parse::Highlife:  0
 no_index:
     directory:
         - t
