@@ -30,6 +30,61 @@ sub _init
 	return $self;
 }
 
+sub name
+{
+	my( $self ) = @_;
+	return $self->{'name'};
+}
+
+sub type
+{
+	my( $self ) = @_;
+	return $self->{'type'};
+}
+
+sub value
+{
+	my( $self ) = @_;
+	return $self->{'value'};
+}
+
+sub valuetype
+{
+	my( $self ) = @_;
+	return $self->{'value-type'};
+}
+
+sub subvalue
+{
+	my( $self, @args ) = @_;
+	return $self->subvalues( @args );
+}
+
+sub subvalues
+{
+	my( $self, $subvalue_key_name ) = @_;
+	return () if ref $self->{'value'} ne 'ARRAY';
+	my @subvalues;
+	foreach my $pair ( @{ $self->{'value'} } ) {
+		my( $name, $value ) = @{$pair};
+		push @subvalues, $value 
+			if ! defined $subvalue_key_name || $name eq $subvalue_key_name;
+	}
+	return (wantarray() ? @subvalues : shift @subvalues);
+}
+
+sub unique_subvalues
+{
+	my( $self ) = @_;
+	return () if ref $self->{'value'} ne 'ARRAY';
+	my %subvalues;
+	foreach my $pair ( @{ $self->{'value'} } ) {
+		my( $name, $value ) = @{$pair};
+		$subvalues{ $name } = $value;
+	}
+	return %subvalues;
+}
+
 sub dump
 {
 	my( $self ) = @_;
